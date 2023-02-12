@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const courseRoutes = require('./courseRoutes');
-const studentRoutes = require('./studentRoutes');
-//http://localhost/api/courses
-router.use('/courses', courseRoutes);
-//http://localhost/api/students
-router.use('/students', studentRoutes);
+const thoughtRoutes = require('./thoughtRoutes');
+const userRoutes = require('./userRoutes');
+
+router.use('/users', userRoutes);
+router.use('/thoughts', thoughtRoutes);
 
 module.exports = router;

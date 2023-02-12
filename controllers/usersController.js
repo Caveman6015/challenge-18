@@ -10,10 +10,10 @@ module.exports = {
   },
  
   getSingleUser(req, res) {
-    User.findOne({ _id: req.params.UsersId })
+    User.findOne({ _id: req.params.userId })
       .select('-__v')
       .then((user) =>
-        !course
+        !user
           ? res.status(404).json({ message: 'No users with that ID' })
           : res.json(user)
       )
@@ -21,7 +21,8 @@ module.exports = {
   },
  
   createUser(req, res) {
-    User.create(req.res)
+    console.log(req.body)
+    User.create(req.body)
       .then((User) => res.json(User))
       .catch((err) => {
         console.log(err);
@@ -31,11 +32,11 @@ module.exports = {
 
   deleteUser(req, res) {
     User.findOneAndDelete({ _id: req.params.userId })
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'No user with that ID' })
-          : Student.deleteMany({ _id: { $in: course.students } })
-      )
+      // .then((user) =>
+      //   !user
+      //     ? res.status(404).json({ message: 'No user with that ID' })
+      //     : Thought.deleteMany({ _id: { $in: thought.userId } })
+      // )
       .then(() => res.json({ message: 'Users deleted!' }))
       .catch((err) => res.status(500).json(err));
   },

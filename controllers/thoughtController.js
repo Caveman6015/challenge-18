@@ -37,9 +37,9 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No such thought exists' })
-          : Users.findOneAndUpdate(
+          : User.findOneAndUpdate(
               { thought: req.params.thoughtId },
-              { $pull: { students: req.params.studentId } },
+              { $pull: { students: req.params.thoughtId } },
               { new: true }
             )
       )
@@ -70,9 +70,9 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({
-              message: 'Student deleted, but no courses found',
+              message: 'thought deleted, but no thought found',
             })
-          : res.json({ message: 'Student successfully deleted' })
+          : res.json({ message: 'thought successfully deleted' })
       )
       .catch((err) => {
         console.log(err);
